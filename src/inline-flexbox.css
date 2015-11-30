@@ -1,0 +1,46 @@
+:root {
+  --box-padding: 10px;
+  --box-number_small: 3;
+  --box-number_medium: 4;
+  --box-number_large: 5;
+  --viewport-width_small: 48em;
+  --viewport-width_medium: 64em;
+  --viewport-width_large: 75em;
+}
+
+@custom-media --small-viewport (min-width: 48em);
+@custom-media --medium-viewport (min-width: 64em);
+@custom-media --large-viewport (min-width: 75em);
+
+body {
+  margin: 0;
+  font-size: 62.5%;
+}
+
+.shelf {
+  display: flex;
+  flex-flow: row wrap;
+  padding: var(--box-padding);
+}
+
+.box {
+  box-sizing: border-box;
+  padding: var(--box-padding);
+  width: 100%;
+  height: calc(100vw - var(--box-padding));
+}
+
+.book {
+  background-color: #c4c4c4;
+  height: 100%;
+  width: 100%;
+}
+
+@each $width in small, medium, large {
+  @media (--$(width)-viewport) {
+    .box {
+      width: calc(100% / var(--box-number_$(width)));
+      height: calc((100vw / var(--box-number_$(width))) - var(--box-padding));
+    }
+  }
+}

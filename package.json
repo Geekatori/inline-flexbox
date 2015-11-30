@@ -1,0 +1,26 @@
+{
+  "name": "inline-flexbox",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Geekatori/inline-flexbox.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Geekatori/inline-flexbox/issues"
+  },
+  "homepage": "https://github.com/Geekatori/inline-flexbox#readme",
+  "devDependencies": {
+    "autoprefixer": "^6.1.1",
+    "cssnano": "^3.3.2",
+    "cssnext": "^1.8.4",
+    "gulp-postcss": "^6.0.1",
+    "precss": "^1.3.0"
+  }
+}
