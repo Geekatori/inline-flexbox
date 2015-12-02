@@ -6,6 +6,7 @@
   --viewport-width_small: 48em;
   --viewport-width_medium: 64em;
   --viewport-width_large: 75em;
+  --browser-scrollbar-width: 17px;
 }
 
 @custom-media --small-viewport (min-width: 48em);
@@ -27,7 +28,7 @@ body {
   box-sizing: border-box;
   padding: var(--box-padding);
   width: 100%;
-  height: calc(100vw - var(--box-padding));
+  height: calc(100vw - var(--box-padding) - var(--box-padding) - var(--browser-scrollbar-width));
 }
 
 .book {
