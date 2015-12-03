@@ -20,7 +20,7 @@ body {
 
 .shelf {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
   padding: var(--box-padding);
 }
 
@@ -28,7 +28,9 @@ body {
   box-sizing: border-box;
   padding: var(--box-padding);
   width: 100%;
-  height: calc(100vw - var(--box-padding) - var(--box-padding) - var(--browser-scrollbar-width));
+  height: calc((100vw - var(--browser-scrollbar-width) - var(--box-padding) - var(--box-padding)));
+  flew-grow: 0;
+  flex-shrink: 0;
 }
 
 .book {
@@ -40,8 +42,9 @@ body {
 @each $width in small, medium, large {
   @media (--$(width)-viewport) {
     .box {
-      width: calc(100% / var(--box-number_$(width)));
-      height: calc((100vw / var(--box-number_$(width))) - var(--box-padding));
+      width: auto;
+      height: calc(((100vw - var(--browser-scrollbar-width) - var(--box-padding) - var(--box-padding)) / var(--box-number_$(width))));
+      flex-basis: calc(100% / var(--box-number_$(width)));
     }
   }
 }
