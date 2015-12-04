@@ -1,50 +1,64 @@
 :root {
+  /* Gutter size */
   --box-padding: 10px;
-  --box-number_small: 3;
-  --box-number_medium: 4;
-  --box-number_large: 5;
-  --viewport-width_small: 48em;
-  --viewport-width_medium: 64em;
-  --viewport-width_large: 75em;
+  /* Number of elements in a row for each screen size */
+  --box-number_small: 2;
+  --box-number_medium: 3;
+  --box-number_large: 4;
+  --box-number_xlarge: 5;
+  /* Scrollbar width used to calculate proper width of viewport */
   --browser-scrollbar-width: 17px;
 }
 
-@custom-media --small-viewport (min-width: 48em);
-@custom-media --medium-viewport (min-width: 64em);
-@custom-media --large-viewport (min-width: 75em);
+/* Custom media queries */
+@custom-media --small-viewport  (min-width: 36em);
+@custom-media --medium-viewport (min-width: 48em);
+@custom-media --large-viewport  (min-width: 64em);
+@custom-media --xlarge-viewport (min-width: 75em);
 
 body {
   margin: 0;
-  font-size: 62.5%;
+  font-size: 75%;
+  /* Always show vertical scrollbar */
   overflow-y: scroll;
 }
 
 .shelf {
   display: flex;
+  /* Elements wrap to a new line */
   flex-wrap: wrap;
+  /* Add gutter on the container */
   padding: var(--box-padding);
 }
 
 .box {
   box-sizing: border-box;
+  /* Gutter between elements */
   padding: var(--box-padding);
-  width: 100%;
-  height: calc((100vw - var(--browser-scrollbar-width) - var(--box-padding) - var(--box-padding)));
   flew-grow: 0;
   flex-shrink: 0;
+  /* Styles for small screen */
+  width: 100%;
+  /* Size of the viewport - Scrollbar - container gutter - element gutter */
+  height: calc((100vw - var(--browser-scrollbar-width) - var(--box-padding) - var(--box-padding)));
 }
 
 .book {
-  background-color: #c4c4c4;
   height: 100%;
   width: 100%;
+  /* Show grid element */
+  background-color: #c4c4c4;
 }
 
-@each $width in small, medium, large {
+/* Loop of media queries */
+@each $width in small, medium, large, xlarge {
   @media (--$(width)-viewport) {
     .box {
+      /* Reset element width */
       width: auto;
+      /* Size of the viewport - Scrollbar - container gutter - element gutter, divided by the number of elements*/
       height: calc(((100vw - var(--browser-scrollbar-width) - var(--box-padding) - var(--box-padding)) / var(--box-number_$(width))));
+      /* Calculated width is viewport size divided by the number of elements */
       flex-basis: calc(100% / var(--box-number_$(width)));
     }
   }
